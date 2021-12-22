@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import './Header.css'
 import  {nanoid} from 'nanoid'
+import PropTypes from 'prop-types'
 export default class Header extends Component {
+  static propTypes={
+    addTodo:PropTypes.func.isRequired
+  }
   addTodo=(event)=>{
     if(event.keyCode===13){
       // console.log(event.target.value);

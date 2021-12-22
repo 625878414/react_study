@@ -19,9 +19,16 @@ export default class Item extends Component {
     }
   }
   handleChange=(id)=>{
+    let {updateTodo}=this.props;
     return (event)=>{
-      
-      console.log(id,event);
+      // console.log(id,event);
+      updateTodo(id,event.target.checked)
+    }
+  }
+  handleDelete=(id)=>{
+    if(window.confirm("确认删除吗?")){
+      let {deleteTodo}=this.props
+    deleteTodo(id)
     }
   }
   render() {
@@ -30,10 +37,10 @@ export default class Item extends Component {
       <div>
         <li style={{backgroundColor: this.state.mouse ? "#0aa1ed" :"#fff"}} onMouseEnter={this.mouseEnter(true)} onMouseLeave={this.mouseLeave(false)}>
           <label>
-            <input type="checkbox" defaultChecked={done} onChange={this.handleChange(id)}/>
+            <input type="checkbox" checked={done} onChange={this.handleChange(id)}/>
             <span>{name}</span>
           </label>
-          <button className="btn btn-danger" style={ {display: this.state.mouse ? "block" :"none" }}>
+          <button onClick={()=>{this.handleDelete(id)}} className="btn btn-danger" style={ {display: this.state.mouse ? "block" :"none" }}>
             删除
           </button>
         </li>
